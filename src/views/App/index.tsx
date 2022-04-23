@@ -17,9 +17,17 @@ export const App: React.FC = () => {
     <article className={styles.article}>
       <h1 className={styles.articleTitle}>ToDoApp</h1>
       <section className={styles.articleSection}>
-        <InputPlus onAdd={createTask} />
+        <InputPlus
+          onAdd={(title) => {
+            if (title) {
+              createTask(title);
+            }
+          }}
+        />
       </section>
-      <section className={styles.articleSection}></section>
+      <section className={styles.articleSection}>
+        {!tasks.length && <p>タスクが存在していません</p>}
+      </section>
     </article>
   );
 };

@@ -34,7 +34,7 @@ export const InputPlus: React.FC<InputPlusProps> = ({ onAdd }) => {
         aria-label='Add'
         className={styles.inputPlusButton}
       >
-        <BsPlus size='full' color='white' />
+        <BsPlus size={30} color='white' />
       </button>
     </div>
   );
