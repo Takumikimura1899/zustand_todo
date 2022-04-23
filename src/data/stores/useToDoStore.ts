@@ -36,6 +36,19 @@ export const useToDoStore = create<ToDoStore>((set, get) => ({
     });
     console.log(get().tasks);
   },
-  updateTask: (id, title) => {},
-  removeTask: (id) => {},
+  updateTask: (id, title) => {
+    const { tasks } = get();
+    set({
+      tasks: tasks.map((task) => ({
+        ...task,
+        title: task.id === id ? title : task.title,
+      })),
+    });
+  },
+  removeTask: (id) => {
+    const { tasks } = get();
+    set({
+      tasks: tasks.filter((task) => task.id !== id),
+    });
+  },
 }));
