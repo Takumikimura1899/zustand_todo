@@ -1,8 +1,19 @@
 import React from 'react';
 
+import { useToDoStore } from '../../data/stores/useToDoStore';
+
 import styles from './index.module.scss';
 
 export const App: React.FC = () => {
+  const [tasks, createTask, updateTask, removeTask] = useToDoStore((state) => [
+    state.tasks,
+    state.createTask,
+    state.updateTask,
+    state.removeTask,
+  ]);
+
+  createTask('Task 1');
+
   return (
     <article className={styles.article}>
       <h1 className={styles.articleTitle}>ToDoApp</h1>
