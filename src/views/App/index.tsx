@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { useToDoStore } from '../../data/stores/useToDoStore';
 
@@ -12,7 +12,9 @@ export const App: React.FC = () => {
     state.removeTask,
   ]);
 
-  createTask('Task 1');
+  useEffect(() => {
+    createTask('Task 1');
+  }, []);
 
   return (
     <article className={styles.article}>

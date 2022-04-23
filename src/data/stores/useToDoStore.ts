@@ -1,5 +1,7 @@
 import create from 'zustand';
 
+import { generateId } from '../../data/helpers';
+
 interface Task {
   id: string;
   title: string;
@@ -23,7 +25,16 @@ export const useToDoStore = create<ToDoStore>((set, get) => ({
   ],
   createTask: (title) => {
     const { tasks } = get();
-    console.log(tasks);
+    const newTask = {
+      id: generateId(),
+      title,
+      createdAt: Date.now(),
+    };
+
+    set({
+      tasks: [newTask, ...tasks],
+    });
+    console.log(get().tasks);
   },
   updateTask: (id, title) => {},
   removeTask: (id) => {},
