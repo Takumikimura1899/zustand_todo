@@ -1,5 +1,13 @@
 import React from 'react';
 
-export const App = () => {
-  return <article>121212121</article>;
+import styles from './index.module.scss';
+
+export const App: React.FC = () => {
+  return (
+    <article className={styles.article}>
+      <h1 className={styles.articleTitle}>ToDoApp</h1>
+      <section className={styles.articleSection}></section>
+      <section className={styles.articleSection}></section>
+    </article>
+  );
 };
