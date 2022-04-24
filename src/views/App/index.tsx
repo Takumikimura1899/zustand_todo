@@ -26,7 +26,9 @@ export const App: React.FC = () => {
         <InputPlus onAdd={onAdd} />
       </section>
       <section className={styles.articleSection}>
-        {!tasks.length && <p>タスクが存在していません</p>}
+        {!tasks.length && (
+          <p className={styles.articleText}>タスクが存在していません</p>
+        )}
       </section>
     </article>
   );
