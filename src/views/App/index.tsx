@@ -13,17 +13,17 @@ export const App: React.FC = () => {
     state.removeTask,
   ]);
 
+  const onAdd = (title: string) => {
+    if (title) {
+      createTask(title);
+    }
+  };
+
   return (
     <article className={styles.article}>
       <h1 className={styles.articleTitle}>ToDoApp</h1>
       <section className={styles.articleSection}>
-        <InputPlus
-          onAdd={(title) => {
-            if (title) {
-              createTask(title);
-            }
-          }}
-        />
+        <InputPlus onAdd={onAdd} />
       </section>
       <section className={styles.articleSection}>
         {!tasks.length && <p>タスクが存在していません</p>}
