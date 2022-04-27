@@ -4,7 +4,7 @@
   margin-bottom: 15px;
   background: #dbe2ef;
   border-radius: 5px;
-  gap: 10px;
+  padding-right: 15px;
 
   &Label {
     display: grid;
@@ -26,9 +26,15 @@
   &Edit,
   &Remove {
     display: block;
+    margin: auto auto;
     border: none;
     background: none no-repeat center center;
     cursor: pointer;
     padding: 0;
+    transition: opacity 0.3s;
+
+    &:hover {
+      opacity: 0.7;
+    }
   }
 }

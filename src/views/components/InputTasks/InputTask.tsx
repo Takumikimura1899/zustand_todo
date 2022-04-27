@@ -1,7 +1,8 @@
 import React, { useCallback, useState } from 'react';
 import { useToDoStore } from '../../../data/stores/useToDoStore';
 
-import { BsPlus } from 'react-icons/bs';
+import { BiEdit } from 'react-icons/bi';
+import { BsFillTrashFill } from 'react-icons/bs';
 
 import styles from './InputTask.module.scss';
 
@@ -37,13 +38,19 @@ export const InputTask: React.FC<InputTaskProps> = ({
         />
         <h3 className={styles.inputTaskTitle}>{title}</h3>
       </label>
-      <button
+
+      <BiEdit
         aria-label='Remove'
+        size={20}
+        color='#3f72af'
         className={styles.inputTaskRemove}
         onClick={() => {}}
       />
-      <button
+
+      <BsFillTrashFill
         aria-label='Edit'
+        size={20}
+        color='#3f72af'
         className={styles.inputTaskEdit}
         onClick={() => {
           if (confirm('本当に削除しても良いですか？')) {
