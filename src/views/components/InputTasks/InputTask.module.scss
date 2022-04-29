@@ -23,8 +23,17 @@
     line-height: 1.2;
   }
 
+  &EditTitle {
+    font: 1rem/1em 'Roboto', sans-serif;
+    border: none;
+    padding: 5px;
+    background: none;
+    box-shadow: 0 4px 0 -3px #3f72af;
+  }
+
   &Edit,
-  &Remove {
+  &Remove,
+  &Save {
     display: block;
     margin: auto auto;
     border: none;

@@ -3,6 +3,7 @@ import { useToDoStore } from '../../../data/stores/useToDoStore';
 
 import { BiEdit } from 'react-icons/bi';
 import { BsFillTrashFill } from 'react-icons/bs';
+import { HiOutlineSaveAs } from 'react-icons/hi';
 
 import styles from './InputTask.module.scss';
 
@@ -22,11 +23,15 @@ export const InputTask: React.FC<InputTaskProps> = ({
   onRemoved,
 }) => {
   const [checked, setChecked] = useState(false);
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [value, setValue] = useState(title);
+
   return (
     <div className={styles.inputTask}>
       <label className={styles.inputTaskLabel} htmlFor=''>
         <input
           type='checkbox'
+          disabled={isEditMode}
           checked={checked}
           className={styles.inputTaskCheckbox}
           onChange={(e) => {
@@ -36,22 +41,53 @@ export const InputTask: React.FC<InputTaskProps> = ({
             }
           }}
         />
-        <h3 className={styles.inputTaskTitle}>{title}</h3>
+        {isEditMode ? (
+          <input
+            type='text'
+            value={value}
+            onChange={(e) => {
+              setValue(e.target.value);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                onEdited(id, value);
+                setIsEditMode(false);
+              }
+            }}
+            className={styles.inputTaskEditTitle}
+          />
+        ) : (
+          <h3 className={styles.inputTaskTitle}>{title}</h3>
+        )}
       </label>
 
-      <BiEdit
+      {isEditMode ? (
+        <HiOutlineSaveAs
+          aria-label='save'
+          size={20}
+          color='#3f72af'
+          className={styles.inputTaskSave}
+          onClick={() => {
+            onEdited(id, value);
+          }}
+        />
+      ) : (
+        <BiEdit
+          aria-label='Remove'
+          size={20}
+          color='#3f72af'
+          className={styles.inputTaskEdit}
+          onClick={() => {
+            setIsEditMode(!isEditMode);
+          }}
+        />
+      )}
+
+      <BsFillTrashFill
         aria-label='Remove'
         size={20}
         color='#3f72af'
         className={styles.inputTaskRemove}
-        onClick={() => {}}
-      />
-
-      <BsFillTrashFill
-        aria-label='Edit'
-        size={20}
-        color='#3f72af'
-        className={styles.inputTaskEdit}
         onClick={() => {
           if (confirm('本当に削除しても良いですか？')) {
             onRemoved(id);
