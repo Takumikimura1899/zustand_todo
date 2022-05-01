@@ -40,11 +40,13 @@ export const InputTask: React.FC<InputTaskProps> = ({
           type='checkbox'
           disabled={isEditMode}
           checked={checked}
-          className={styles.inputTaskCheckbox}
+          className={styles.inputTaskCheckBox}
           onChange={(e) => {
             setChecked(e.target.checked);
             if (e.target.checked) {
-              onDone(id);
+              setTimeout(() => {
+                onDone(id);
+              }, 300);
             }
           }}
         />
